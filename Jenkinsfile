@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven_3.8.5'
+        maven 'Maven_3.8.1'
     }
 
     environment {
-        SONAR_TOKEN = credentials('sonar') // ID tokena z Jenkins Credentials
+        SONAR_TOKEN = credentials('sonarqube') // ID tokena z Jenkins Credentials
     }
 
     stages {
@@ -24,7 +24,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sonar') {
+                withSonarQubeEnv('MySonar') {
                     bat '''
                         sonar-scanner ^
                         -Dsonar.projectKey=logowanie ^
