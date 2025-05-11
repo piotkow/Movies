@@ -25,9 +25,11 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                bat 'mvn sonar:sonar'
+              steps {
+                withSonarQubeEnv('MySonar') {
+                  bat 'sonar-scanner -Dsonar.projectKey=moj-projekt -Dsonar.sources=src'
+                }
+              }
         }
     }
 }
