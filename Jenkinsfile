@@ -1,12 +1,14 @@
-    pipeline {
+pipeline {
     agent any
 
     tools {
         maven 'Maven 3.8.5'
     }
+
     environment {
         SONAR_TOKEN = credentials('sonarqube')
     }
+
     stages {
         stage('Checkout') {
             steps {
@@ -33,8 +35,5 @@
                 }
             }
         }
-        
-    }
-}
     }
 }
