@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.8.5'
+        maven 'Maven_3.8.5'
     }
 
     environment {
-        SONAR_TOKEN = credentials('sonarqube') // ID tokena z Jenkins Credentials
+        SONAR_TOKEN = credentials('sonarqube')
     }
 
     stages {
@@ -25,13 +25,12 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    bat '''
-                        sonar-scanner ^
+                    bat """
+                        mvn sonar:sonar ^
                         -Dsonar.projectKey=Movies ^
-                        -Dsonar.sources=src ^
-                        -Dsonar.java.binaries=target/classes ^
+                        -Dsonar.host.url=%SONAR_HOST_URL% ^
                         -Dsonar.login=%SONAR_TOKEN%
-                    '''
+                    """
                 }
             }
         }
@@ -41,6 +40,5 @@ pipeline {
                 bat 'mvn test'
             }
         }
-
     }
 }
