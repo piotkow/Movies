@@ -27,7 +27,7 @@ pipeline {
                 withSonarQubeEnv('SonarQube') {
                     bat '''
                         sonar-scanner ^
-                        -Dsonar.projectKey=logowanie ^
+                        -Dsonar.projectKey=Movies ^
                         -Dsonar.sources=src ^
                         -Dsonar.java.binaries=target/classes ^
                         -Dsonar.login=%SONAR_TOKEN%
