@@ -1,4 +1,4 @@
-pipeline {
+    pipeline {
     agent any
 
     tools {
@@ -25,12 +25,13 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-              steps {
-                withSonarQubeEnv('MySonar') {
-                  bat 'sonar-scanner -Dsonar.projectKey=moj-projekt -Dsonar.sources=src'
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    bat 'mvn clean verify sonar:sonar'
                 }
-              }
+            }
         }
+        
     }
 }
     }
