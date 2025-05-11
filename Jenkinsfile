@@ -23,5 +23,13 @@ pipeline {
                 bat 'mvn test'
             }
         }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                bat 'mvn sonar:sonar'
+        }
+    }
+}
     }
 }
