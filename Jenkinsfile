@@ -24,7 +24,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('MySonar') {
+                withSonarQubeEnv('SonarQube') {
                     bat '''
                         sonar-scanner ^
                         -Dsonar.projectKey=logowanie ^
